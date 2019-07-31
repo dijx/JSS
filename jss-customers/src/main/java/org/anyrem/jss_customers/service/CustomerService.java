@@ -9,8 +9,10 @@ public interface CustomerService {
     List<Customer> findAll();
 //    List<Customer> findAllbyLastName(String lastname);
     Customer findById(long id);
-    Customer findByLogin(String login);
+    Customer findByLoginExact(String login);
+    List<Customer> findByLoginLike(String login);
     void save(Customer customer);
+    void delete(Long id);
 
 
 }

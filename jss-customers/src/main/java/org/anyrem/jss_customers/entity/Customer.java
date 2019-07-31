@@ -4,18 +4,19 @@ import org.hibernate.annotations.Generated;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Entity
-@Table(schema = "jss")
+@Table(schema = "jss", name = "customer")
 public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private long id = 0;
+    private long id;
 
     @NotNull
-    @Column(name = "login")
+    @Column(name = "login", unique = true)
     private String login;
 
     @NotNull
@@ -27,6 +28,11 @@ public class Customer {
 
     @Column(name = "last_name", length = 32)
     private String lastName;
+
+    @ElementCollection
+    @CollectionTable(name="customer2address", joinColumns=@JoinColumn(name="user_id"))
+    @Column(name = "address")
+    private Set<Long> addresses;
 
 
     public Customer() {
@@ -42,6 +48,12 @@ public class Customer {
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public Customer(@NotNull String login, @NotNull String password, Set<Long> addresses) {
+        this.login = login;
+        this.password = password;
+        this.addresses = addresses;
     }
 
     public long getId() {
@@ -82,5 +94,18 @@ public class Customer {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Set<Long> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(Set<Long> addresses) {
+        this.addresses = addresses;
+    }
+
+    public void addAddress(Long addressId) {
+
+        this.addresses.add(addressId);
     }
 }

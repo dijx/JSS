@@ -20,7 +20,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<Customer> findAll() {
-        return customerRepository.findAll(Sort.by(Sort.Direction.ASC, "lastName"));
+        return customerRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
 
     @Override
@@ -36,12 +36,33 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer findByLogin(String login) {
+    public Customer findByLoginExact(String login) {
         return customerRepository.findCustomerByLogin(login);
+    }
+
+    @Override
+    public List<Customer> findByLoginLike(String login) {
+
+        return customerRepository.findCustomersByMatchingLogin(login);
     }
 
     @Override
     public void save(Customer customer) {
         customerRepository.save(customer);
     }
+
+    @Override
+    public void delete(Long id) {
+
+        Optional<Customer> tempCustomer = customerRepository.findById(id);
+
+        if (tempCustomer.isPresent()) {
+
+            customerRepository.delete(tempCustomer.get());
+        } else {
+
+            throw new RuntimeException("ID not found");
+        }
+    }
+
 }

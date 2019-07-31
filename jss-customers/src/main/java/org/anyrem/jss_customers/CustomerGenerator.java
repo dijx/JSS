@@ -6,8 +6,7 @@ import org.anyrem.jss_customers.service.CustomerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Component
 public class CustomerGenerator {
@@ -18,12 +17,22 @@ public class CustomerGenerator {
     public void generate () {
 
         List<Customer> customerList = new ArrayList<>();
+        HashSet<Long> addressSet = new HashSet<>();
 
         customerList.add(new Customer("anyrem", "pass123"));
         customerList.add(new Customer("jasiek", "pass123"));
         customerList.add(new Customer("krzysiek", "pass123"));
 
-        customerList.forEach(customerService::save);
+        addressSet.add(1L);
+        addressSet.add(2L);
+        customerList.add(new Customer("patryk", "pass123", addressSet));
+
+
+        customerList.forEach(customer -> {
+            if (!(customerService.findByLoginExact(customer.getLogin()) instanceof  Customer)) {
+                customerService.save(customer);
+            }
+        });
 
     }
 }
