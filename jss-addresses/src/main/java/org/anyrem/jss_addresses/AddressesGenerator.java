@@ -31,7 +31,22 @@ public class AddressesGenerator {
                 )
         );
 
-        addressesList.forEach(addressService::save);
+        addressesList.add(
+                new Address(
+                        LocationUnit.ULICA,
+                        "Majakowskiego",
+                        "12",
+                        null,
+                        "Siemianowice Slaskie",
+                        Country.POLAND
+                )
+        );
+
+        addressesList.forEach(address -> {
+            if (!(addressService.findAll().contains(address))) {
+                addressService.save(address);
+            }
+        });
 
     }
 }

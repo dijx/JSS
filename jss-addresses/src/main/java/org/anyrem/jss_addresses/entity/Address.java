@@ -15,6 +15,7 @@ public class Address {
     private Long id;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     @Column(name = "location_unit")
     private LocationUnit locationUnit;
 
@@ -35,6 +36,7 @@ public class Address {
     private String city;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     @Column(name = "country")
     private Country country;
 
@@ -95,5 +97,23 @@ public class Address {
 
     public void setCountry(Country country) {
         this.country = country;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        Address compared = (Address) obj;
+
+        if (compared.locationUnit.equals(this.locationUnit) &&
+                compared.unitName.equals(this.unitName) &&
+                compared.building.equals(this.building) &&
+                compared.flat.equals(this.flat) &&
+                compared.city.equals(this.city) &&
+                compared.country.equals(this.country)
+        ) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

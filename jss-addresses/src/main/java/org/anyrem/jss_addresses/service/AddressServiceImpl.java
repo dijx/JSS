@@ -12,16 +12,16 @@ import java.util.List;
 public class AddressServiceImpl implements AddressService {
 
     @Autowired
-    AddressRepository addressController;
+    AddressRepository addressRepository;
 
     @Override
     public List<Address> findAll(){
-        return addressController.findAll(Sort.by(Sort.Direction.ASC, "id"));
+        return addressRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
 
     @Override
     public Address save(Address address) {
-        addressController.save(address);
+        addressRepository.save(address);
         return address;
     }
 }
