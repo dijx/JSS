@@ -8,8 +8,9 @@ Simple eShop written in Java:
 - AOP logging (db driver)
 
 Features
-- articles database
-- customers database
-- adresses database
-- comments database
+- articles database & REST API
+- customers database & REST API
+- adresses database & REST API
+- comments database & REST API
+- shop engine  & REST CLIENTS
 
