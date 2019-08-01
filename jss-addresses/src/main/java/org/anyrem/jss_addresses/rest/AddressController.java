@@ -4,11 +4,9 @@ import org.anyrem.jss_addresses.AddressesGenerator;
 import org.anyrem.jss_addresses.entity.Address;
 import org.anyrem.jss_addresses.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
@@ -27,8 +25,26 @@ public class AddressController {
         return addressService.findAll();
     }
 
+    @GetMapping("/addresses/{id}")
+    public Address findById(@PathVariable Long id) {
+        return addressService.findById(id);
+    }
+
+    @GetMapping(value = "/addresses", params = "id")
+    public List<Address> findByIds(@RequestParam Long[] id) {
+        return addressService.findByIds(id);
+    }
+
     @PostMapping("/addresses")
-    public Address save(Address address) {
+    public Address save(@RequestBody @NotNull Address address) {
+
+        address.setId(0L);
+        return addressService.save(address);
+    }
+
+    @PutMapping("/addresses")
+    public Address update(@RequestBody @NotNull Address address) {
+
         return addressService.save(address);
     }
 

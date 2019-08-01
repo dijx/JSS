@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AddressServiceImpl implements AddressService {
@@ -20,8 +23,47 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
+    public Address findById(Long id) {
+
+        Optional<Address> tempAddr = addressRepository.findById(id);
+        if (tempAddr.isPresent()) {
+            return tempAddr.get();
+        } else {
+            throw new RuntimeException("ID not found");
+        }
+    }
+
+    @Override
+    public List<Address> findByIds(Long[] ids) {
+
+        List<Address> addressesList = new ArrayList<>();
+
+        Arrays.stream(ids).forEach(id -> {
+            Optional<Address> temp = addressRepository.findById(id);
+            if (temp.isPresent()) {
+                addressesList.add(temp.get());
+            }
+        });
+        return addressesList;
+    }
+
+    @Override
     public Address save(Address address) {
-        addressRepository.save(address);
-        return address;
+
+        if (!isPresent(address)) {
+            return addressRepository.save(address);
+        } else {
+            throw new RuntimeException("Address already exist");
+        }
+
+    }
+
+    private boolean isPresent(Address address) {
+
+        if (addressRepository.findAll().contains(address)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

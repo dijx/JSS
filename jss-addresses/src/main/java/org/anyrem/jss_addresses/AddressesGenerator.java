@@ -33,10 +33,10 @@ public class AddressesGenerator {
 
         addressesList.add(
                 new Address(
-                        LocationUnit.ULICA,
-                        "Majakowskiego",
-                        "12",
-                        null,
+                        LocationUnit.PLAC,
+                        "Zbawiciela",
+                        "12B",
+                        "36A",
                         "Siemianowice Slaskie",
                         Country.POLAND
                 )

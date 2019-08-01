@@ -6,7 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(schema = "jss", name = "address")
+@Table(schema = "jss", name = "addresses")
 public class Address {
 
     @Id
@@ -14,28 +14,24 @@ public class Address {
     @Column(name = "id")
     private Long id;
 
-    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "location_unit")
     private LocationUnit locationUnit;
 
-    @NotNull
+    
     @Column(name = "unit_name")
     private String unitName;
 
-    @NotNull
+    
     @Column(name = "building")
     private String building;
-
-    @Nullable
+    
     @Column(name = "flat")
     private String flat;
-
-    @NotNull
+    
     @Column(name = "city")
     private String city;
-
-    @NotNull
+    
     @Enumerated(EnumType.STRING)
     @Column(name = "country")
     private Country country;
@@ -44,12 +40,12 @@ public class Address {
     public Address() {
     }
 
-    public Address(@NotNull LocationUnit locationUnit,
-                   @NotNull String unitName,
-                   @NotNull String building,
-                   @Nullable String flat,
-                   @NotNull String city,
-                   @NotNull Country country
+    public Address( LocationUnit locationUnit,
+                    String unitName,
+                    String building,
+                    String flat,
+                    String city,
+                    Country country
     ) {
         this.locationUnit = locationUnit;
         this.unitName = unitName;
@@ -81,6 +77,22 @@ public class Address {
 
     public void setUnitName(String unitName) {
         this.unitName = unitName;
+    }
+
+    public String getBuilding() {
+        return building;
+    }
+
+    public void setBuilding(String building) {
+        this.building = building;
+    }
+
+    public String getFlat() {
+        return flat;
+    }
+
+    public void setFlat(String flat) {
+        this.flat = flat;
     }
 
     public String getCity() {

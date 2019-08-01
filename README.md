@@ -7,7 +7,7 @@ Simple eShop written in Java:
 - partial microservices architecture
 - AOP logging (db driver)
 
-Features
+Features to be implemented:
 - articles database & REST API
 - customers database & REST API
 - adresses database & REST API
