@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Employees list</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+</head>
+<body>
+
+<div class="container">
+
+    <H3>Addresses List</H3>
+    <hr>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <th></th>
+        <th>ul/al/pl</th>
+        <th>Nr.Budynku</th>
+        <th>Nr.Lokalu</th>
+        <th>Miasto</th>
+        <th>Kraj</th>
+        </thead>
+
+        <tbody>
+        <tr th:each="address : ${addresses}">
+            <td th:text="${address.locationUnit}"/>
+            <td th:text="${address.unitName}"/>
+            <td th:text="${address.building}"/>
+            <td th:text="${address.flat}"/>
+            <td th:text="${address.city}"/>
+            <td th:text="${address.country}"/>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>

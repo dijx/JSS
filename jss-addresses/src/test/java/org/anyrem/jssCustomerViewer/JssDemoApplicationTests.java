@@ -1,4 +1,4 @@
-package org.anyrem.jssdemo;
+package org.anyrem.jssCustomerViewer;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
