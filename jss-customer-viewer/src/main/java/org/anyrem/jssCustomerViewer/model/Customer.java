@@ -1,6 +1,7 @@
 package org.anyrem.jssCustomerViewer.model;
 
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
 import java.util.Set;
 
 public class Customer {
@@ -96,7 +97,25 @@ public class Customer {
     }
 
     public void addAddressFull(Address address) {
+
+        if(this.addressesFull == null) {
+            this.addressesFull = new HashSet<>();
+        }
+
         addressesFull.add(address);
     }
 
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", addresses=" + addresses +
+                ", addressesFull=" + addressesFull +
+                '}';
+    }
 }

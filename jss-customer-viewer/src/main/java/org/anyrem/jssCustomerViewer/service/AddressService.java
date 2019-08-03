@@ -3,6 +3,7 @@ package org.anyrem.jssCustomerViewer.service;
 import org.anyrem.jssCustomerViewer.model.Address;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface AddressService {
 
@@ -10,7 +11,7 @@ public interface AddressService {
 
     public void saveAddress(Address address);
 
-    public Address getAddress(Long theId);
+    public Optional<Address> getAddress(Long theId);
 
     public void deleteAddress(Long theId);
 

@@ -102,4 +102,17 @@ public class Address {
             return false;
         }
     }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", locationUnit=" + locationUnit +
+                ", unitName='" + unitName + '\'' +
+                ", building='" + building + '\'' +
+                ", flat='" + flat + '\'' +
+                ", city='" + city + '\'' +
+                ", country=" + country +
+                '}';
+    }
 }

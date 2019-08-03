@@ -29,7 +29,7 @@ public class AddressServiceImpl implements AddressService {
         if (tempAddr.isPresent()) {
             return tempAddr.get();
         } else {
-            throw new RuntimeException("ID not found");
+            throw new RuntimeException(">>ID not found: "+id);
         }
     }
 
@@ -53,7 +53,7 @@ public class AddressServiceImpl implements AddressService {
         if (!isPresent(address)) {
             return addressRepository.save(address);
         } else {
-            throw new RuntimeException("Address already exist");
+            throw new RuntimeException(">>Address already exist");
         }
 
     }
