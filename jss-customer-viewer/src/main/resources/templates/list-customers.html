@@ -20,12 +20,15 @@
 
     <H3>Customers List</H3>
     <hr>
+    <a th:href="@{/customers/addCustomer}" class="btn btn-primary btn-sm mb-3">
+        New Customer
+    </a>
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
         <th>First Name</th>
         <th>Last Name</th>
         <th>Login</th>
-        <th>Adres 0</th>
+        <th>Actions</th>
         </thead>
 
         <tbody>
@@ -33,12 +36,22 @@
             <td th:text="${customer.firstName}"/>
             <td th:text="${customer.lastName}"/>
             <td th:text="${customer.login}"/>
-            <td th:text="${customer.addressesFull[0].locationUnit +' '+
-            customer.addressesFull[0].unitName +' '+
-            customer.addressesFull[0].building +'/'+
-            customer.addressesFull[0]?.flat +', '+
-            customer.addressesFull[0].city +' '+
-            customer.addressesFull[0].country}" />
+            <td>
+                <a th:href="@{/employees/showFormForUpdate(employeeId=${customer.id})}"
+                   class="btn btn-success btn-sm">
+                    Update
+                </a>
+
+                <a th:href="@{/employees/showFormForUpdate(employeeId=${customer.id})}"
+                   class="btn btn-info btn-sm">
+                    Addresses
+                </a>
+                <a th:href="@{/employees/deleteEmployee(employeeId=${customer.id})}"
+                   onclick="if (!(confirm('Are you sure you want to delete user?'))) return false"
+                   class="btn btn-danger btn-sm">
+                    Delete
+                </a>
+            </td>
         </tr>
         </tbody>
     </table>
